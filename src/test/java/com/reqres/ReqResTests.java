@@ -4,21 +4,15 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Map;
 
-import static com.utils.RestUtils.*;
-
-public class ReqResTests {
+public class ReqResTests extends ReqResAPIs {
 
     @Test
-    public void createUser() {
-
-        String endPoint = "https://reqres.in/api/users";
-        Map<String, Object> payLoad = Payloads.createUserPayloadFromMap("Batman", "Superhero");
-
-        Response response = performPostWithoutAuth(endPoint, payLoad, new HashMap<>());
-
+    public void createUserTest() throws IOException {
+        Map<String, Object> payLoad = Payloads.createUserPayloadFromMap();
+        Response response = createUserAPI(payLoad);
         Assert.assertEquals(response.getStatusCode(), 201);
     }
 }

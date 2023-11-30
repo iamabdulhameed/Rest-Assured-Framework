@@ -18,9 +18,10 @@
         <jacksonversion>2.16.0</jacksonversion>
         <gsonversion>2.10.1</gsonversion>
         <extentreportversion>5.1.1</extentreportversion>
-        <javafakerversion>1.0.2</javafakerversion>
+        <datafakerversion>2.0.2</datafakerversion>
         <lombokversion>1.18.30</lombokversion>
         <apachecommonversion>3.14.0</apachecommonversion>
+        <surefireversion>3.2.2</surefireversion>
     </properties>
 
     <dependencies>
@@ -59,11 +60,11 @@
             <version>${extentreportversion}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${javafakerversion}</version>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafakerversion}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -80,6 +81,26 @@
             <version>${apachecommonversion}</version>
         </dependency>
 
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-surefire-plugin</artifactId>-->
+<!--            <version>${surefireversion}</version>-->
+<!--        </dependency>-->
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefireversion}</version>
+                <configuration>
+                    <suiteXmlFiles>testng.xml</suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

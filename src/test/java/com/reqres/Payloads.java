@@ -1,5 +1,8 @@
 package com.reqres;
 
+import com.utils.RandomDataGenerator;
+import com.utils.RandomDataTypeNames;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +19,13 @@ public class Payloads {
         Map<String, Object> payload = new HashMap<>();
         payload.put("name", name);
         payload.put("job", job);
+        return payload;
+    }
+
+    public static Map<String, Object> createUserPayloadFromMap() {
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("name", RandomDataGenerator.getRandomData(RandomDataTypeNames.FULLNAME));
+        payload.put("job", RandomDataGenerator.getRandomData(RandomDataTypeNames.JOB_POSITION));
         return payload;
     }
 }
