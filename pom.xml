@@ -22,6 +22,7 @@
         <lombokversion>1.18.30</lombokversion>
         <apachecommonversion>3.14.0</apachecommonversion>
         <surefireversion>3.2.2</surefireversion>
+        <javersversion>7.3.6</javersversion>
     </properties>
 
     <dependencies>
@@ -87,6 +88,14 @@
 <!--            <artifactId>maven-surefire-plugin</artifactId>-->
 <!--            <version>${surefireversion}</version>-->
 <!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.javers/javers-core -->
+        <dependency>
+            <groupId>org.javers</groupId>
+            <artifactId>javers-core</artifactId>
+            <version>${javersversion}</version>
+        </dependency>
+
 
     </dependencies>
 

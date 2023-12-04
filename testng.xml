@@ -9,6 +9,9 @@
             <class name="com.reqres.ReqResTests">
                 <methods>
                     <include name="createUserTest"/>
+                    <include name="createUserWithDefaultValuesTest"/>
+                    <include name="createUserTestAndVerifyResponse"/>
+                    <include name="createUserTestAndVerifyResponseWithLogging"/>
                 </methods>
             </class>
         </classes>

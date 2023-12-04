@@ -53,4 +53,12 @@ public class RestUtils {
         printResponseLogInReport(response);
         return response;
     }
+
+    public static Response performPostWithoutAuth(String endPoint, Object payLoadAsPojo, Map<String, String> headers) {
+        RequestSpecification requestSpecification = getRequestSpecification(endPoint, payLoadAsPojo, headers);
+        Response response = requestSpecification.post();
+        printRequestLogInReport(requestSpecification);
+        printResponseLogInReport(response);
+        return response;
+    }
 }

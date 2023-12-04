@@ -40,8 +40,4 @@ public class Setup implements ITestListener {
         ExtentReportManager.logExceptionDetails(formattedTrace);
     }
 
-    public void onTestSuccess(ITestResult result) {
-        ExtentReportManager.logPassDetails(result.toString());
-    }
-
 }
