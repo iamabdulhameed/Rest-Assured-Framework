@@ -11,8 +11,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ReqResTests extends ReqResAPIs {
 
@@ -59,10 +65,7 @@ public class ReqResTests extends ReqResAPIs {
         ReqRes payLoad = Payloads.getCreateUserPayloadFromPojo();
         Response response = createUserAPI(payLoad);
 
-        Map<String, Object> valuesMap = new HashMap<>();
-        valuesMap.put("name", payLoad.getName());
-        valuesMap.put("job", payLoad.getJob());
-
+        Map<String, Object> valuesMap = AssertionUtils.getJsonPathsFromPayloadAsMap(payLoad);
         AssertionUtils.assertJsonPath(response, valuesMap);
     }
 }
