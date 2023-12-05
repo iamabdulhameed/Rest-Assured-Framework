@@ -12,6 +12,7 @@
                     <include name="createUserWithDefaultValuesTest"/>
                     <include name="createUserTestAndVerifyResponse"/>
                     <include name="createUserTestAndVerifyResponseWithLogging"/>
+                    <include name="createUserTestWithDataProvider"/>
                 </methods>
             </class>
         </classes>

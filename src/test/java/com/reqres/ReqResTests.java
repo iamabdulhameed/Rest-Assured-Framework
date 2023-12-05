@@ -4,21 +4,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reqres.pojos.ReqRes;
 import com.reqres.pojos.ReqResWithDefaultValues;
 import com.utils.AssertionUtils;
+import com.utils.ExcelUtils;
 import com.utils.RandomDataGenerator;
 import com.utils.RandomDataTypeNames;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static com.utils.ExcelUtils.getExcelDataAsListOfMap;
 
 public class ReqResTests extends ReqResAPIs {
 
@@ -67,5 +68,28 @@ public class ReqResTests extends ReqResAPIs {
 
         Map<String, Object> valuesMap = AssertionUtils.getJsonPathsFromPayloadAsMap(payLoad);
         AssertionUtils.assertJsonPath(response, valuesMap);
+    }
+
+    @Test(dataProvider = "CreateUserAPIData")
+    public void createUserTestWithDataProvider(ReqRes reqResPayload) {
+        Response response = createUserAPI(reqResPayload);
+
+        Map<String, Object> valuesMap = AssertionUtils.getJsonPathsFromPayloadAsMap(reqResPayload);
+        AssertionUtils.assertJsonPath(response, valuesMap);
+    }
+
+    @DataProvider(name = "CreateUserAPIData")
+    public Iterator<ReqRes> getCreateUserAPIDataFromExcel() throws IOException {
+        List<LinkedHashMap<String, String>> excelListOfMaps = ExcelUtils.getExcelDataAsListOfMap("API_Test_Data", "Sheet1");
+        List<ReqRes> payloads = new ArrayList<>();
+        for (LinkedHashMap<String, String> data: excelListOfMaps) {
+            ReqRes payload = ReqRes.builder()
+                    .name(data.get("name"))
+                    .job(data.get("job"))
+                    .build();
+            payloads.add(payload);
+        }
+
+        return payloads.iterator();
     }
 }
